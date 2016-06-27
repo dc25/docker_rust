@@ -2,20 +2,8 @@
 # Edit to suit your own tastes.
 
 
-export PATH=\
-$HOME/.cabal/bin:\
-/home/builder/.cabal/bin:\
-$PATH
-
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
-
-function nixextras
-{
-    nix-env -f "<nixpkgs>" -iA haskellPackages.ghc-mod
-    nix-env -f "<nixpkgs>" -iA haskellPackages.hdevtools            
-    nix-env -f "<nixpkgs>" -iA haskellPackages.hlint 
-}
 
 cd 

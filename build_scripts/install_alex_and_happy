@@ -1,7 +1,0 @@
-#! /bin/bash
-
-. ./setup_environment
-
-cabal update
-cabal install alex 
-cabal install happy
