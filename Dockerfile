@@ -30,8 +30,8 @@ WORKDIR $WORKAREA
 COPY build_scripts/install_basic_tools $WORKAREA
 RUN ./install_basic_tools 
 
-COPY build_scripts/setup_common_vim_plugins $WORKAREA
-RUN ./setup_common_vim_plugins
+COPY build_scripts/setup_basic_vim_plugins $WORKAREA
+RUN ./setup_basic_vim_plugins
 
 COPY build_scripts/setup_sshd $WORKAREA
 RUN ./setup_sshd 
