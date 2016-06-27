@@ -8,6 +8,7 @@ basics=" \
     git \
     net-tools \
     openssh-server \
+    python \
     tmux \
     vim-gtk"
 
