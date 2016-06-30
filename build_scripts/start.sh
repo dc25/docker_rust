@@ -40,8 +40,8 @@ else
     sudo su $USER_NAME -c "$WORKAREA/personalize.sh"
 fi
 
-echo "sshd started"
 if [ "$USER_KEY" != "" ]; then
+    echo "sshd started"
     sudo /usr/bin/svscan /services/
 else
     sudo su $USER_NAME /bin/bash -c tmux
