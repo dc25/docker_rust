@@ -1,0 +1,7 @@
+#! /bin/bash
+
+tools=" \
+    sass \
+    helm "
+
+sudo su -c "gem install $tools"

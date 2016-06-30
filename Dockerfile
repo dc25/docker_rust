@@ -33,6 +33,12 @@ RUN ./install_basic_tools
 COPY build_scripts/setup_basic_vim_plugins $WORKAREA
 RUN ./setup_basic_vim_plugins
 
+COPY build_scripts/install_tools $WORKAREA
+RUN ./install_tools npm libsqlite3-dev ruby ruby-dev
+
+COPY build_scripts/install_gems $WORKAREA
+RUN ./install_gems sass helm
+
 COPY build_scripts/setup_sshd $WORKAREA
 RUN ./setup_sshd 
 
