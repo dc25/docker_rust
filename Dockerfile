@@ -27,14 +27,13 @@ ENV WORKAREA /home/$USER_NAME/workarea/
 RUN mkdir -p $WORKAREA
 WORKDIR $WORKAREA
 
-COPY build_scripts/install_basic_tools $WORKAREA
-RUN ./install_basic_tools 
+COPY build_scripts/install_apts $WORKAREA
+RUN ./install_apts cpio curl daemontools entr git net-tools openssh-server python tmux vim-gtk
 
 COPY build_scripts/setup_basic_vim_plugins $WORKAREA
 RUN ./setup_basic_vim_plugins
 
-COPY build_scripts/install_tools $WORKAREA
-RUN ./install_tools npm libsqlite3-dev ruby ruby-dev
+RUN ./install_apts npm libsqlite3-dev ruby ruby-dev
 
 COPY build_scripts/install_gems $WORKAREA
 RUN ./install_gems sass helm
