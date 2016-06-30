@@ -36,7 +36,7 @@ RUN ./setup_basic_vim_plugins
 RUN ./install_apts npm libsqlite3-dev ruby ruby-dev
 
 COPY build_scripts/install_gems $WORKAREA
-RUN ./install_gems sass helm
+RUN ./install_gems sass haml
 
 COPY build_scripts/setup_sshd $WORKAREA
 RUN ./setup_sshd 
