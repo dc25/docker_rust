@@ -1,2 +1,2 @@
 #! /bin/bash
-sudo su -c "gem install $*"
+sudo gem install $*
