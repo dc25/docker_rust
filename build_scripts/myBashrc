@@ -6,29 +6,5 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-# initialize a npm/gulp project in a previously empty directory.
-function spro
-{
-    npm init
-    npm install gulp --save-dev
-    npm install  \
-        gulp-autoprefixer \
-        gulp-cache \
-        gulp-concat \
-        gulp-cssnano \
-        gulp-haml \
-        gulp-imagemin \
-        gulp-jshint \
-        gulp-livereload \
-        gulp-notify \
-        gulp-rename \
-        gulp-sass \
-        gulp-uglify \
-        del \
-        --save-dev
-    cp ~/templates/gulpfile.js .
-    cp ~/templates/dot_jshintrc ./.jshintrc
-}
-
 
 cd 
