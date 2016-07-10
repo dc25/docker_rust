@@ -29,7 +29,6 @@ else
     sudo su $USER_NAME -c "cp myVimrc ~"
     sudo su $USER_NAME -c "cp myBashrc ~"
     sudo su $USER_NAME -c "echo '. ~/myBashrc' >> ~/.bashrc"
-    sudo su $USER_NAME -c "cp -r templates ~/templates"
 
     for s in .vim ; do
         if [ -e $HOME/$s ]; then

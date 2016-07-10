@@ -39,6 +39,10 @@ RUN ./setup_basic_vim_plugins
 COPY build_scripts/install_node $WORKAREA
 RUN ./install_node
 
+## Install elm
+COPY build_scripts/install_elm $WORKAREA
+RUN ./install_elm
+
 ### Copy entire build scripts directory.
 ### Last step so that new files don't trigger excessive rebuild.
 COPY build_scripts $WORKAREA
