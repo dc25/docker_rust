@@ -1,0 +1,6 @@
+#! /bin/bash
+
+mkdir -p $HOME/.vim/bundle
+cd $HOME/.vim/bundle
+
+git clone https://github.com/lambdatoast/elm.vim.git
