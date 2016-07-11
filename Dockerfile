@@ -11,6 +11,9 @@ ENV USER_ID 54863
 # removed it, vim starting emitting error messages when using plugins 
 # pathogen and vim2hs together.  
 #
+# 2016-07-11 Tried taking it out again.
+# 2016-07-11 Did not notice problems with vim but saw errors reported that 
+#            were not there before when running ./try-reflex . Leaving in.
 RUN locale-gen en_US.UTF-8  
 ENV LANG en_US.UTF-8  
 ENV LANGUAGE en_US:en  
