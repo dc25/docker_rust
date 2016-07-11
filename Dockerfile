@@ -25,7 +25,8 @@ RUN apt-get update && apt-get install -y \
     git \
     net-tools \
     openssh-server \
-    python tmux \
+    python \
+    tmux \
     sudo \
     vim-gtk 
 
