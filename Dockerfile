@@ -26,25 +26,17 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 COPY build_scripts/setup_sshd $WORKAREA
 RUN ./setup_sshd 
 
+USER $USER_NAME
 ENV WORKAREA /home/$USER_NAME/workarea/
 RUN mkdir -p $WORKAREA
 WORKDIR $WORKAREA
-USER $USER_NAME
 
 ###
 COPY build_scripts/setup_basic_vim_plugins $WORKAREA
 RUN ./setup_basic_vim_plugins
 
-## Install a recent version of node.  
-COPY build_scripts/install_node $WORKAREA
-RUN ./install_node
-
-## Install elm
-COPY build_scripts/install_elm $WORKAREA
-RUN ./install_elm
-
 COPY build_scripts/setup_vim_plugins_for_elm $WORKAREA
-RUN ./setup_vim_plugins_for_elm 
+RUN ./setup_vim_plugins_for_haskell
 
 ### Copy entire build scripts directory.
 ### Last step so that new files don't trigger excessive rebuild.
