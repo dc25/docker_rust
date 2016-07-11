@@ -5,6 +5,10 @@
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+alias v=vim
+alias pyser='python -m SimpleHTTPServer'
+alias cdgnc='cd /repos/gitnc'
+alias cdgit='cd /repos/git'
 
 function nixextras
 {
