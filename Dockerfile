@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 
 # Build as user "builder" with arbitrary user id.
 ENV USER_NAME builder
-ENV USER_ID 54862
+ENV USER_ID 54863
 
 # Set the locale - was (and may still be ) necessary for ghcjs-boot to work
 # Got this originally here: # http://askubuntu.com/questions/581458/how-to-configure-locales-to-unicode-in-a-docker-ubuntu-14-04-container
@@ -16,9 +16,20 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en  
 ENV LC_ALL en_US.UTF-8  
 
+RUN apt-get update && apt-get install -y \
+    bzip2 \
+    cpio \
+    curl \
+    daemontools \
+    entr \
+    git \
+    net-tools \
+    openssh-server \
+    python tmux \
+    sudo \
+    vim-gtk 
+
 # Create a new user, to do the rest of the build.
-RUN apt-get update 
-RUN apt-get install -y sudo cpio curl daemontools entr git net-tools openssh-server python tmux vim-gtk
 RUN adduser --disabled-password --gecos '' --uid $USER_ID $USER_NAME
 RUN adduser $USER_NAME sudo 
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
@@ -35,7 +46,7 @@ WORKDIR $WORKAREA
 COPY build_scripts/setup_basic_vim_plugins $WORKAREA
 RUN ./setup_basic_vim_plugins
 
-COPY build_scripts/setup_vim_plugins_for_elm $WORKAREA
+COPY build_scripts/setup_vim_plugins_for_haskell $WORKAREA
 RUN ./setup_vim_plugins_for_haskell
 
 ### Copy entire build scripts directory.

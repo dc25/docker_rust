@@ -6,5 +6,16 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
+function nixextras
+{
+    nix-env -f "<nixpkgs>" -iA haskellPackages.ghc-mod
+    nix-env -f "<nixpkgs>" -iA haskellPackages.hdevtools            
+    nix-env -f "<nixpkgs>" -iA haskellPackages.hlint 
+}
 
-cd 
+function rebu
+{
+    find . -type f -name '*.hs' | xargs ls | entr sh -c 'echo;echo;echo;echo;echo;ghcjs Main.hs; echo done'
+}
+
+cd /repos/gitnc/reflex-platform4
