@@ -1,8 +1,4 @@
-FROM ubuntu:16.04
-
-# Build as user "builder" with arbitrary user id.
-ENV USER_NAME builder
-ENV USER_ID 54863
+FROM ubuntu:16.10
 
 # Set the locale - was (and may still be ) necessary for ghcjs-boot to work
 # Got this originally here: # http://askubuntu.com/questions/581458/how-to-configure-locales-to-unicode-in-a-docker-ubuntu-14-04-container
@@ -33,27 +29,10 @@ RUN apt-get update && apt-get install -y \
     sudo \
     vim-gtk 
 
-# Create a new user, to do the rest of the build.
-RUN adduser --disabled-password --gecos '' --uid $USER_ID $USER_NAME
-RUN adduser $USER_NAME sudo 
+## enable sudo w/o password
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
-COPY build_scripts/setup_sshd $WORKAREA
-RUN ./setup_sshd 
-
-USER $USER_NAME
-ENV WORKAREA /home/$USER_NAME/workarea/
-RUN mkdir -p $WORKAREA
-WORKDIR $WORKAREA
-
-###
-COPY build_scripts/setup_basic_vim_plugins $WORKAREA
-RUN ./setup_basic_vim_plugins
-
-COPY build_scripts/setup_vim_plugins_for_haskell $WORKAREA
-RUN ./setup_vim_plugins_for_haskell
-
-### Copy entire build scripts directory.
-### Last step so that new files don't trigger excessive rebuild.
-COPY build_scripts $WORKAREA
-RUN sudo cp start.sh /
+RUN mkdir -p /workarea
+RUN chmod 777 /workarea
+COPY build_scripts /workarea
+RUN /workarea/setup_sshd

@@ -2,47 +2,17 @@
 
 export USER_NAME=$1
 export USER_ID=$2
-if [ "$3" != "" ]; then
-    export USER_KEY=$3
-fi
+export USER_KEY=$3
 
 user_exists=$(id -u $USER_NAME > /dev/null 2>&1; echo $?) 
 if [[ "$user_exists" == 0 ]]; then
-    echo "user exists: $USER_NAME"
+    echo "sshd started"
+    sudo /usr/bin/svscan /services/ 
 else
     echo "configuring user: $USER_NAME ..."
-
-    sudo adduser --disabled-password --gecos '' --uid $USER_ID $USER_NAME > /dev/null 2>&1 
+    sudo adduser --disabled-password --gecos '' --home /workarea --uid $USER_ID $USER_NAME > /dev/null 2>&1 
     sudo adduser $USER_NAME sudo > /dev/null 2>&1 
-
-    sudo su $USER_NAME -c "mkdir \$HOME/.ssh"
-    if [ "$USER_KEY" != "" ]; then
-        sudo su $USER_NAME -c "echo $USER_KEY > \$HOME/.ssh/authorized_keys"
-        sudo su $USER_NAME -c "chmod 600 \$HOME/.ssh/authorized_keys"
-    fi
-
-    WORKAREA=/home/builder/workarea/
-    cd $WORKAREA
-
-    sudo su $USER_NAME -c "cp tmux.conf ~/.tmux.conf"
-    sudo su $USER_NAME -c "cp vimrc ~/.vimrc"
-    sudo su $USER_NAME -c "cp myVimrc ~"
-    sudo su $USER_NAME -c "cp myBashrc ~"
-    sudo su $USER_NAME -c "echo '. ~/myBashrc' >> ~/.bashrc"
-
-    for s in .vim ; do
-        if [ -e $HOME/$s ]; then
-            cd $HOME/$s
-            sudo su $USER_NAME -c "find . -depth -print | cpio -pdvum ~/$s" > /dev/null 2>&1
-        fi
-    done
-
-    sudo su $USER_NAME -c "$WORKAREA/personalize.sh"
-fi
-
-if [ "$USER_KEY" != "" ]; then
-    echo "sshd started"
-    sudo /usr/bin/svscan /services/
-else
-    sudo su $USER_NAME /bin/bash -c tmux
+    sudo chown $USER_NAME /workarea
+    sudo chmod go-w /workarea
+    sudo su $USER_NAME -c "/workarea/user_configuration.sh \"$USER_KEY\""
 fi

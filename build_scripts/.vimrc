@@ -26,4 +26,6 @@ au FileType haskell nnoremap <buffer> <F2> :HdevtoolsType<CR>
 au FileType haskell nnoremap <buffer> <silent> <F3> :HdevtoolsClear<CR>
 au FileType haskell nnoremap <buffer> <silent> <F4> :HdevtoolsInfo<CR>
 
-so $HOME/myVimrc
+" A few convenient keyboard macros.
+map <F8> :'c,.w! ~/tmp/xxx
+map <F9> :r ~/tmp/xxx
