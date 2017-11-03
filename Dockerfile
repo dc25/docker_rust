@@ -29,10 +29,42 @@ RUN apt-get update && apt-get install -y \
     sudo \
     vim-gtk 
 
-## enable sudo w/o password
-RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+WORKDIR /tmp
+COPY build_scripts/setup_sshd .
+RUN ./setup_sshd
 
-RUN mkdir -p /workarea
-RUN chmod 777 /workarea
-COPY build_scripts /workarea
-RUN /workarea/setup_sshd
+ARG user
+ARG id
+ARG key
+
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' | tee -a /etc/sudoers
+RUN adduser --disabled-password --gecos '' --home /workarea --uid $id $user 
+RUN adduser $user sudo 
+
+WORKDIR /workarea
+
+# copy bash config scripts now in case later installs modify them
+COPY build_scripts/.profile .
+COPY build_scripts/.bashrc .
+RUN chown -R ${user} .
+
+COPY build_scripts/setup_basic_vim_plugins .
+RUN su ${user} -c ./setup_basic_vim_plugins
+
+COPY build_scripts/user_installs.sh .
+RUN su ${user} -c ./user_installs.sh
+
+COPY build_scripts/personalize.sh .
+RUN su ${user} -c ./personalize.sh
+
+USER ${user}
+RUN mkdir .ssh
+RUN echo ${key} | tee .ssh/authorized_keys > /dev/null
+RUN chmod 600 .ssh/authorized_keys
+
+# COPY build_scripts/myVimrc .
+COPY build_scripts/start.sh .
+COPY build_scripts/.tmux.conf .
+COPY build_scripts/.vimrc .
+
+RUN sudo chown -R ${user} .
