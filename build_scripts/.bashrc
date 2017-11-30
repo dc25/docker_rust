@@ -15,6 +15,7 @@ function nixextras
     nix-env -f "<nixpkgs>" -iA haskellPackages.ghc-mod
     nix-env -f "<nixpkgs>" -iA haskellPackages.hdevtools            
     nix-env -f "<nixpkgs>" -iA haskellPackages.hlint 
+    nix-env -f "<nixpkgs>" -iA haskellPackages.hindent
 }
 
 function rebu
