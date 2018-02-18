@@ -1,0 +1,25 @@
+alias pyser='python -m SimpleHTTPServer'
+
+function nixextras
+{
+    nix-env -f "<nixpkgs>" -iA haskellPackages.ghc-mod
+    nix-env -f "<nixpkgs>" -iA haskellPackages.hdevtools            
+    nix-env -f "<nixpkgs>" -iA haskellPackages.hlint 
+    nix-env -f "<nixpkgs>" -iA haskellPackages.hindent
+}
+
+function rebu
+{
+    find . -type f -name '*.hs' | xargs ls | entr sh -c 'echo;echo;echo;echo;echo;ghcjs -DGHCJS_GC_INTERVAL=60000 Main.hs; echo done'
+}
+
+
+function rebc
+{
+    find . -type f -name '*.hs' | xargs ls | entr sh -c 'echo;echo;echo;echo;echo;ghc Main.hs; echo done'
+}
+
+
+
+## cd /repos/gitnc/reflex-platform23-2017-11-02-292ae334bdb9178245af96d26688df7bf3532849
+cd /repos/gitnc/reflex-platform25-2018-02-16-2e2fb7f0d15385a712face0c9cdcece4f3981a90
