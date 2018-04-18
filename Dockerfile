@@ -1,21 +1,24 @@
 FROM sshd
 
-COPY build_scripts/install_nix.sh .
-RUN su ${DEVL} -c ./install_nix.sh
+ARG user
+ARG id
 
-COPY build_scripts/install_miso.sh .
-RUN su ${DEVL} -c ./install_miso.sh
+COPY build_scripts/install_nix.sh /tmp
+RUN su ${user} -c /tmp/install_nix.sh
 
-COPY build_scripts/user_installs.sh .
-RUN su ${DEVL} -c ./user_installs.sh
+COPY build_scripts/install_miso.sh /tmp
+RUN su ${user} -c /tmp/install_miso.sh
 
-COPY build_scripts/personalize.sh .
-RUN su ${DEVL} -c ./personalize.sh
+COPY build_scripts/user_installs.sh /tmp
+RUN su ${user} -c ./user_installs.sh
 
-COPY build_scripts/haskellBashrc .
-RUN su ${DEVL} -c "echo . ~/haskellBashrc" | tee -a .bashrc
+COPY build_scripts/personalize.sh /tmp
+RUN su ${user} -c ./personalize.sh
 
-COPY build_scripts/haskellVimrc .
-RUN su ${DEVL} -c "echo so ~/haskellVimrc" | tee -a .vimrc
+COPY build_scripts/haskellBashrc /tmp
+RUN su ${user} -c 'cp /tmp/haskellBashrc ~'
+RUN su ${user} -c 'echo . ~/haskellBashrc | tee -a ~/.bashrc'
 
-RUN chown -R ${DEVL} .
+COPY build_scripts/haskellVimrc /tmp
+RUN su ${user} -c 'cp /tmp/haskellVimrc ~'
+RUN su ${user} -c "echo so ~/haskellVimrc" | tee -a .vimrc
