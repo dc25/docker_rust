@@ -1,6 +1,6 @@
 #! /bin/bash 
 
-. /workarea/.nix-profile/etc/profile.d/nix.sh
+. ~/.nix-profile/etc/profile.d/nix.sh
 
 nix-env -i cabal2nix
 cd
