@@ -3,11 +3,14 @@ FROM sshd
 ARG user
 ARG id
 
-COPY build_scripts/install_nix.sh /tmp
-RUN su ${user} -c /tmp/install_nix.sh
+RUN apt-get update && apt-get install -y \
+    curl 
 
 COPY build_scripts/install_miso.sh /tmp
 RUN su ${user} -c /tmp/install_miso.sh
+
+RUN apt-get update && apt-get install -y \
+    git 
 
 COPY build_scripts/user_installs.sh /tmp
 RUN su ${user} -c ./user_installs.sh
