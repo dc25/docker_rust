@@ -6,14 +6,24 @@ ARG id
 RUN apt-get update && apt-get install -y \
     curl 
 
-COPY build_scripts/install_miso.sh /tmp
-RUN su ${user} -c /tmp/install_miso.sh
+COPY build_scripts/install_stack.sh /tmp
+RUN su ${user} -c /tmp/install_stack.sh
+
+COPY build_scripts/setup_stack.sh /tmp
+RUN su ${user} -c /tmp/setup_stack.sh
+
+COPY build_scripts/install_vscode.sh /tmp
+RUN /tmp/install_vscode.sh
 
 RUN apt-get update && apt-get install -y \
-    git 
+    git \
+    vim-gtk 
 
-COPY build_scripts/user_installs.sh /tmp
-RUN su ${user} -c ./user_installs.sh
+COPY build_scripts/setup_basic_vim_plugins.sh /tmp
+RUN su ${user} -c /tmp/setup_basic_vim_plugins.sh
+
+COPY build_scripts/setup_haskell_vim_plugins.sh /tmp
+RUN su ${user} -c /tmp/setup_haskell_vim_plugins.sh
 
 COPY build_scripts/personalize.sh /tmp
 RUN su ${user} -c ./personalize.sh

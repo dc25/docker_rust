@@ -1,6 +1,5 @@
 #! /bin/bash
 
-echo "installing vim plugins for haskell"
 sudo apt-get install -y make gcc
 
 mkdir -p $HOME/.vim/autoload
