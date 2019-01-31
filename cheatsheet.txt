@@ -1,3 +1,5 @@
 https://nixos.org/nixpkgs/manual/#users-guide-to-the-haskell-infrastructure
+
 nix-shell -p "haskellPackages.ghcWithPackages (pkgs: [pkgs.aeson pkgs.HTTP pkgs.http-conduit])"
 nix-env -f "<nixpkgs>" -iA haskellPackages.ghcid
+nix-env -f "<nixpkgs>" -qaP -A haskellPackages
