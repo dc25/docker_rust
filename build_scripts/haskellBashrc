@@ -8,3 +8,11 @@ function rebu
 export PATH=$HOME/.local/bin:$PATH
 
 
+## from https://nixos.org/nixpkgs/manual/#users-guide-to-the-haskell-infrastructure
+
+function gonix 
+{
+    nix-shell -p "haskellPackages.ghcWithPackages (pkgs: [pkgs.aeson pkgs.HTTP pkgs.http-conduit pkgs.ghcid])"
+}
+
+## nix-env -f "<nixpkgs>" -qaP -A haskellPackages
