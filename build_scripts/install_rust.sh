@@ -1,15 +1,9 @@
 #! /bin/bash
 
 echo "installing rust"
-curl -L https://sh.rustup.rs | sh -s -- -y --default-toolchain=nightly
+# curl -L https://sh.rustup.rs      | sh -s -- -y --default-toolchain=nightly
+curl   -L https://sh.rustup.rs -sSf | sh -s -- -y 
 source ~/.cargo/env
-
-## per https://github.com/rust-lang/rls
-rustup component add rls rust-analysis rust-src
-
-## per https://github.com/racer-rust/racer
-cargo install racer
-
 ##-- rustup target add asmjs-unknown-emscripten
 ##-- rustup target add wasm32-unknown-emscripten
 
