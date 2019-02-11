@@ -6,7 +6,8 @@ ARG id
 RUN apt-get update && apt-get install -y \
     curl \
     gcc \
-    git 
+    git \
+    entr 
 
 COPY build_scripts/install_rust.sh /tmp
 RUN su ${user} /tmp/install_rust.sh
@@ -29,3 +30,8 @@ RUN su ${user} -c /tmp/install_neovim_plugins.sh
 
 COPY build_scripts/install_vscode.sh /tmp
 RUN /tmp/install_vscode.sh
+
+COPY build_scripts/myBashrc /tmp
+RUN su ${user} -c 'cp /tmp/myBashrc ~'
+RUN su ${user} -c 'echo . ~/myBashrc | tee -a ~/.bashrc'
+
