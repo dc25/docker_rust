@@ -1,4 +1,4 @@
-FROM sshd
+FROM sshd_18.04
 
 ARG user
 ARG id
@@ -14,6 +14,9 @@ RUN su ${user} /tmp/install_rust.sh
 
 COPY build_scripts/install_rls.sh /tmp
 RUN su ${user} /tmp/install_rls.sh
+
+COPY build_scripts/install_rust_helpers.sh /tmp
+RUN su ${user} /tmp/install_rust_helpers.sh
 
 COPY build_scripts/install_neovim.sh /tmp
 RUN su ${user} -c /tmp/install_neovim.sh
