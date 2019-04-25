@@ -6,6 +6,7 @@ ARG id
 RUN apt-get update && apt-get install -y \
     curl \
     gcc \
+    rust-gdb \
     git \
     entr 
 
