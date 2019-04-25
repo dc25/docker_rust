@@ -1,3 +1,6 @@
+alias cdgit="cd /repos/git"
+alias cdgnc="cd /repos/gitnc"
+
 function rebu
 {
     find src -type f -name '*.rs' | xargs ls | entr sh -c 'cargo build'
