@@ -1,5 +1,10 @@
 #! /bin/bash
 
-# nvim +PlugInstall +UpdateRemotePlugins +qa
-vim +PlugInstall +qa
+if [[ -x `which nvim` ]]; then
+    nvim +PlugInstall +UpdateRemotePlugins +qa
+fi
+
+if [[ -x `which vim` ]]; then
+    vim +PlugInstall +qa
+fi
 
