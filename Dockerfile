@@ -1,4 +1,4 @@
-FROM sshd
+FROM devbase
 
 ARG user
 ARG id
@@ -9,9 +9,6 @@ RUN apt-get update && apt-get install -y \
     rust-gdb \
     git \
     entr 
-
-# COPY build_scripts/install_vscode.sh /tmp
-# RUN /tmp/install_vscode.sh
 
 COPY build_scripts/install_rust.sh /tmp
 RUN su ${user} /tmp/install_rust.sh
@@ -36,3 +33,8 @@ COPY build_scripts/myBashrc /tmp
 RUN su ${user} -c 'cp /tmp/myBashrc ~'
 RUN su ${user} -c 'echo . ~/myBashrc | tee -a ~/.bashrc'
 
+COPY build_scripts/install_vscode.sh /tmp
+RUN /tmp/install_vscode.sh
+
+COPY build_scripts/setup_vscode_debugging.sh /tmp
+RUN su ${user} -c /tmp/setup_vscode_debugging.sh
