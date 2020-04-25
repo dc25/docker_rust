@@ -22,19 +22,17 @@ RUN su ${user} /tmp/install_rust_helpers.sh
 COPY build_scripts/setup_vim_plug.sh /tmp
 RUN su ${user} -c /tmp/setup_vim_plug.sh
 
-COPY build_scripts/myVimrc /tmp
-RUN su ${user} -c 'cp /tmp/myVimrc ~'
-RUN su ${user} -c "echo so ~/myVimrc | tee -a ~/vimrc"
+COPY build_scripts/rustVimrc /tmp
+RUN su ${user} -c 'cp /tmp/rustVimrc ~'
+RUN su ${user} -c 'echo so ~/rustVimrc | tee -a ~/vimrc'
 
-COPY build_scripts/install_neovim_plugins.sh /tmp
-RUN su ${user} -c /tmp/install_neovim_plugins.sh
+COPY build_scripts/install_vim_plugins.sh /tmp
+RUN su ${user} -c /tmp/install_vim_plugins.sh
 
 COPY build_scripts/myBashrc /tmp
 RUN su ${user} -c 'cp /tmp/myBashrc ~'
 RUN su ${user} -c 'echo . ~/myBashrc | tee -a ~/.bashrc'
 
-COPY build_scripts/install_vscode.sh /tmp
-RUN /tmp/install_vscode.sh
-
 COPY build_scripts/setup_vscode_debugging.sh /tmp
 RUN su ${user} -c /tmp/setup_vscode_debugging.sh
+

@@ -1,7 +1,7 @@
 #! /bin/bash
 
 echo "installing rust"
-curl -L https://sh.rustup.rs      | sh -s -- -y --default-toolchain=nightly
+curl -L https://sh.rustup.rs      | sh -s -- -y --default-toolchain=stable
 # curl   -L https://sh.rustup.rs -sSf | sh -s -- -y 
 source ~/.cargo/env
 ##-- rustup target add asmjs-unknown-emscripten
