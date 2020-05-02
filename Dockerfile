@@ -24,4 +24,4 @@ RUN /tmp/setup_vscode_debugging.sh
 
 COPY myBashrc /tmp
 RUN cp /tmp/myBashrc ~
-RUN echo . ~/myBashrc | tee -a ~/.bashrc
+RUN echo . ~/myBashrc | tee -a ~/.bashrc > /dev/null
