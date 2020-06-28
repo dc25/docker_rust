@@ -3,11 +3,14 @@ FROM devbase
 COPY install_rust.sh /tmp
 RUN /tmp/install_rust.sh
 
+COPY install_rust_helpers.sh /tmp
+RUN /tmp/install_rust_helpers.sh
+
 COPY install_rls.sh /tmp
 RUN /tmp/install_rls.sh
 
-COPY install_rust_helpers.sh /tmp
-RUN /tmp/install_rust_helpers.sh
+# COPY install_rust-analyzer.sh /tmp
+# RUN /tmp/install_rust-analyzer.sh
 
 COPY setup_vim_plug.sh /tmp
 RUN /tmp/setup_vim_plug.sh
@@ -24,4 +27,4 @@ RUN /tmp/setup_vscode_debugging.sh
 
 COPY myBashrc /tmp
 RUN cp /tmp/myBashrc ~
-RUN echo . ~/myBashrc | tee -a ~/.bashrc > /dev/null
+RUN echo . ~/myBashrc | tee -a ~/.bashrc > /dev/null 2>&1

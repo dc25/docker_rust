@@ -9,7 +9,11 @@
 
 source ~/.cargo/env
 
-./install_npm.sh
+# npm needed for installation of rust-analyzer
+sudo apt-get install  -y npm
+sudo npm install -g npm
+
+cd /tmp
 
 # per instructions here: https://github.com/rust-analyzer/rust-analyzer
 
@@ -18,6 +22,3 @@ git clone https://github.com/rust-analyzer/rust-analyzer && cd rust-analyzer
 
 # install both the language server and VS Code extension
 cargo xtask install
-
-
-
