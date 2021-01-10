@@ -1,5 +1,5 @@
-alias cdgit="cd /repos/git"
-alias cdgnc="cd /repos/gitnc"
+alias cdgit="cd /media/veracrypt1/repos/git"
+alias cdgnc="cd /media/veracrypt1/repos/gitnc"
 
 function rebu
 {
