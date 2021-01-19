@@ -22,6 +22,6 @@ RUN echo so ~/rustVimrc | tee -a ~/vimrc
 COPY --chown=$USER install_vim_plugins.sh /tmp
 RUN /tmp/install_vim_plugins.sh
 
-COPY --chown=$USER myBashrc /tmp
-RUN cp /tmp/myBashrc ~
-RUN echo . ~/myBashrc | tee -a ~/.bashrc > /dev/null 2>&1
+COPY --chown=$USER rustBashrc /tmp
+RUN cp /tmp/rustBashrc ~
+RUN echo . ~/rustBashrc | tee -a ~/myBashrc > /dev/null 2>&1

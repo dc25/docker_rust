@@ -1,0 +1,5 @@
+function rebu
+{
+    find src -type f -name '*.rs' | xargs ls | entr sh -c 'cargo build'
+}
+
