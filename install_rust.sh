@@ -4,6 +4,23 @@ echo "installing rust"
 curl -L https://sh.rustup.rs      | sh -s -- -y --default-toolchain=stable
 # curl   -L https://sh.rustup.rs -sSf | sh -s -- -y 
 source ~/.cargo/env
+
+
+###########################################################################
+# While building on virtualbox got error in install_rust_helpers.sh :
+#
+#        error: no default toolchain configured
+#
+# adding the following two commands seemed to fix it:
+#
+rustup install stable
+rustup default stable
+#
+# Thank you: https://stackoverflow.com/a/46864309
+#
+###########################################################################
+
+
 ##-- rustup target add asmjs-unknown-emscripten
 ##-- rustup target add wasm32-unknown-emscripten
 
