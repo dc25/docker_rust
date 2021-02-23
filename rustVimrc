@@ -1,4 +1,13 @@
-call plug#begin('~/.vim/plugged')
+
+" see https://github.com/junegunn/vim-plug for s:plugged values
+" see https://github.com/neovim/neovim/issues/1931 for 'nvim' check.
+if has('nvim')
+let s:plugged = stdpath('data') . '/plugged'
+else
+let s:plugged = '~/.vim/plugged'
+endif
+
+call plug#begin(s:plugged)
 
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
@@ -18,6 +27,7 @@ endif
 
 let g:lsp_signs_enabled = 1         " enable signs
 let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
+let g:lsp_diagnostics_virtual_text_enabled = 0  "for neovim per: https://github.com/prabirshrestha/vim-lsp/issues/1072
 
 let g:lsp_signs_error = {'text': '✗'}
 
