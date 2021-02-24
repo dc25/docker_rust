@@ -1,5 +1,5 @@
 ARG base=devbase
-FROM "$base"
+FROM $base
 
 COPY --chown=$USER install_rust.sh /tmp
 RUN /tmp/install_rust.sh
