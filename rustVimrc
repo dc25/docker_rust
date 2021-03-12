@@ -24,6 +24,9 @@ let g:lsp_signs_error = {'text': '✗'}
 let g:lsp_log_verbose = 1
 let g:lsp_log_file = expand('~/vim-lsp.log')
 
+" prevent >A in left margin from showing up all the time.
+let g:lsp_document_code_action_signs_enabled = 0
+
 " for asyncomplete.vim log
 let g:asyncomplete_log_file = expand('~/asyncomplete.log')
 
