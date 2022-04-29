@@ -10,8 +10,12 @@
 source ~/.cargo/env
 
 # npm needed for installation of rust-analyzer
+
 sudo apt-get install  -y npm
-sudo npm install -g npm
+sudo npm install -g npm@latest
+
+sudo npm install -g n
+sudo n latest
 
 cd /tmp
 
