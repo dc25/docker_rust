@@ -7,6 +7,12 @@ RUN /tmp/install_rust.sh
 COPY --chown=$USER install_rust_helpers.sh /tmp
 RUN /tmp/install_rust_helpers.sh
 
+COPY --chown=$USER install_mold.sh /tmp
+RUN /tmp/install_mold.sh
+
+COPY --chown=$USER install_rust_gtk_dev.sh /tmp
+RUN /tmp/install_rust_gtk_dev.sh
+
 COPY --chown=$USER install_rust-analyzer.sh /tmp
 RUN /tmp/install_rust-analyzer.sh
 
