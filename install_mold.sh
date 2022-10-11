@@ -5,7 +5,7 @@ rm -rf /tmp/mold
 cd /tmp
 git clone https://github.com/rui314/mold.git
 cd mold
-git checkout v1.2.1
+git checkout v1.3.1
 
 # sudo ./install-build-deps.sh 
 # next line is pretty much from ./install-build-deps.sh but script had trouble recognizing machine type
