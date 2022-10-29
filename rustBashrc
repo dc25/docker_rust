@@ -1,3 +1,6 @@
+# added ~/.local/bin for lvim 
+export PATH=~/.local/bin/:$PATH
+
 function rebu
 {
     find src -type f -name '*.rs' | xargs ls | entr sh -c 'cargo build'
