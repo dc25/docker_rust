@@ -7,22 +7,26 @@
 
 # rust-analyser suggested here: https://www.reddit.com/r/rust/comments/fbrxxs/suggested_vscode_extensions/
 
-source ~/.cargo/env
+. ~/.cargo/env
+
+echo hello
 
 # npm needed for installation of rust-analyzer
-
-sudo apt-get install  -y npm
-sudo npm install -g npm@latest
-
-sudo npm install -g n
-sudo n latest
+# doing this in separate script to ensure that correct version gets detected by this script.
 
 cd /tmp
+echo hello2
 
 # per instructions here: https://github.com/rust-analyzer/rust-analyzer
 
+rm -rf rust-analyzer
+echo hello3
 # clone the repo
-git clone https://github.com/rust-analyzer/rust-analyzer && cd rust-analyzer
+git clone https://github.com/rust-analyzer/rust-analyzer 
+echo hello4
+cd rust-analyzer
+echo hello5
 
 # install both the language server and VS Code extension
 cargo xtask install
+echo hello6
