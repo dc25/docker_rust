@@ -9,24 +9,18 @@
 
 . ~/.cargo/env
 
-echo hello
 
 # npm needed for installation of rust-analyzer
 # doing this in separate script to ensure that correct version gets detected by this script.
 
 cd /tmp
-echo hello2
 
 # per instructions here: https://github.com/rust-analyzer/rust-analyzer
 
 rm -rf rust-analyzer
-echo hello3
 # clone the repo
 git clone https://github.com/rust-analyzer/rust-analyzer 
-echo hello4
 cd rust-analyzer
-echo hello5
 
 # install both the language server and VS Code extension
 cargo xtask install
-echo hello6
